@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import BlogsDisplay from "./Component/BlogsDisplay";
 import BlogTextUpdater from "./Component/BlogTextUpdater";
+import PageLimitInput from "./Component/PageLimitInput";
 
 import "./App.css";
 
@@ -85,36 +86,13 @@ function App() {
         </div>
         {console.log(page)}
 
-        <div className="Page-Limit">
-          <div>Limit: {limit}</div>
-          <div>
-            Page: ({page} of {Math.ceil(blogsLength / limit)})
-          </div>
-
-          <div>
-            <lable>Select Limit: </lable>
-            <input
-              className="Limit-Input"
-              type="number"
-              value={limit}
-              onChange={(e) => {
-                setLimit(e.target.value);
-              }}
-            />
-          </div>
-
-          <div>
-            <lable>Select Page: </lable>
-            <input
-              className="Page-Input"
-              type="number"
-              value={page}
-              onChange={(e) => {
-                setPage(e.target.value);
-              }}
-            />
-          </div>
-        </div>
+        <PageLimitInput
+          pageProp={page}
+          limitProp={limit}
+          blogsLengthProp={blogsLength}
+          setLimit={setLimit}
+          setPage={setPage}
+        />
 
         {blogs.length <= 0 && (
           <div className="spinner-border" role="status">
